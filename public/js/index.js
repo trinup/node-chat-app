@@ -9,8 +9,3 @@ socket.on('disconnect', function () {
 socket.on('newMessage', function(msg) {
     console.log("New message posted: ", msg);
 });
-
-socket.emit('createMessage', {
-    from: 'abc',
-    text: 'welcome'
-});
