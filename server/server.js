@@ -28,14 +28,10 @@ io.on('connection', (socket) => {
 
     socket.broadcast.emit('newMessage', generateMessage('Admin', 'New user joined the chat room'));
 
-    socket.on('createMessage', (newMessage) => {
+    socket.on('createMessage', (newMessage, callback) => {
         console.log('New message to display: ', newMessage);
-        io.emit('newMessage', {
-            from: newMessage.from,
-            text: newMessage.text,
-            createdAt: new Date().getTime()
-        });
-        socket.broadcast.emit('newMessage', generateMessage(newMessage.from, newMessage.text));
+        io.emit('newMessage', generateMessage(newMessage.from, newMessage.text));
+       callback('This is from the server');
     });
 });
 
