@@ -31,11 +31,12 @@ io.on('connection', (socket) => {
     socket.on('createMessage', (newMessage, callback) => {
         console.log('New message to display: ', newMessage);
         io.emit('newMessage', generateMessage(newMessage.from, newMessage.text));
-       callback('This is from the server');
+       callback();
     });
 
-    socket.on('createLocationMessage', (coords) => {
+    socket.on('createLocationMessage', (coords, callback) => {
         io.emit('newLocationMessage', generateLocationMessage('Admin', coords.latitude, coords.longitude));
+        callback();
     });
 });
 
